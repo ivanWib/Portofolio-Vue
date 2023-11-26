@@ -1,5 +1,6 @@
 <script setup>
 // import TheWelcome from '../components/TheWelcome.vue'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -26,15 +27,18 @@
                 determined to become a dedicated and productive web specialist.
               </div>
 
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
-              >
-                Resume
-              </button>
+              <RouterLink to="/cv">
+                <button
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
+                >
+                  Resume
+                </button>
+              </RouterLink>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <RouterView />
 </template>
