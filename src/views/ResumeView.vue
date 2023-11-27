@@ -1,6 +1,8 @@
 <template>
-  <VuePDF :pdf="pdf" :page="1" />
-  <VuePDF :pdf="pdf" :page="2" />
+  <div class="w-fit">
+    <VuePDF :pdf="pdf" :page="1" />
+    <VuePDF :pdf="pdf" :page="2" />
+  </div>
 </template>
 
 <script setup>
