@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <h1>ini CV Ivan</h1>
-  </div>
+  <VuePDF :pdf="pdf" :page="1" />
+  <VuePDF :pdf="pdf" :page="2" />
 </template>
 
-<script setup></script>
+<script setup>
+import { VuePDF, usePDF } from '@tato30/vue-pdf'
+import '@tato30/vue-pdf/style.css'
 
-<style lang="scss" scoped></style>
+const { pdf } = usePDF({
+  url: 'CV_Ivan.pdf',
+  enableXfa: true
+})
+</script>
