@@ -1,0 +1,28 @@
+.blinking-dots {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Warna hitam untuk latar belakang */
+    z-index: 9999;
+  }
+  
+  .dot {
+    position: absolute;
+    width: 1.5px;
+    height: 1.5px;
+    background-color: #fff; /* Warna putih untuk titik-titik */
+    border-radius: 50%;
+    animation: blink 2s infinite; /* Animasi berkedip selama 1 detik, secara terus-menerus */
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0; /* Setengah waktu, atur opasitas menjadi 0 untuk efek berkedip */
+    }
+  }
+
+  /* .blinking-dots .dot {
+    animation: blink 1s infinite;
+  } */

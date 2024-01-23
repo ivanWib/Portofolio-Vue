@@ -1,50 +1,79 @@
+//
 <script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
-import { RouterLink, RouterView } from 'vue-router'
+// // import TheWelcome from '../components/TheWelcome.vue'
+// import { RouterLink, RouterView } from 'vue-router'
+//
+</script>
+
+<style>
+/* Import styles.css atau tambahkan gaya langsung di sini */
+@import '../assets/styles.css';
+</style>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      dots: [], // Array untuk menyimpan informasi titik-titik
+      colors: ['#ff0000', '#00ff00', '#0000ff'] // Warna yang akan digunakan secara bergantian
+    }
+  },
+  mounted() {
+    // Membuat 10 titik-titik acak saat komponen dipasang
+    this.generateRandomDots(200)
+
+    // Memulai animasi berkedip secara bergantian
+    setInterval(this.toggleBlink, 1000) // Ganti warna setiap detik (1000 milidetik)
+  },
+  methods: {
+    generateRandomDots(count) {
+      for (let i = 0; i < count; i++) {
+        this.dots.push({
+          id: i,
+          top: `${Math.random() * 100}%`, // Nilai acak untuk posisi top
+          left: `${Math.random() * 100}%`, // Nilai acak untuk posisi left
+          color: this.colors[i % this.colors.length] // Bergantian antara tiga warna
+        })
+      }
+    },
+    toggleBlink() {
+      // Mengubah visibilitas berkedip (bergantian setiap detik)
+      this.dots.forEach((dot) => {
+        dot.visible = !dot.visible
+      })
+    }
+  }
+}
 </script>
 
 <template>
-  <section class="bg-black md:h-full md:w-full relative p-10">
-    <div class="text-white text-center font-semibold text-xl md:text-3xl">
-      Welcome To My Portfolio
-    </div>
+  <div id="app">
+    <!-- Konten utama Anda di sini -->
+    <router-view />
 
-    <div class="md:mx-auto md:flex md:items-center md:justify-center my-10">
+    <!-- Komponen berkedip dengan titik-titik dan teks -->
+    <div class="blinking-dots">
       <div
-        class="w-fit rounded-md shadow-lg shadow-[#FFFB73] bg-gradient-to-r from-red-500 via-[#FFA33C] to-[#FFFB73] p-1"
+        v-for="dot in dots"
+        :key="dot.id"
+        class="dot"
+        :style="{ top: dot.top, left: dot.left, backgroundColor: dot.color }"
+      ></div>
+
+      <div
+        class="text-white text-4xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 bg-opacity-20 border rounded-lg shadow-md border-opacity-100 backdrop-blur-md border-solid border-yellow-500 p-5"
       >
-        <div class="flex p-10 h-full w-full justify-center bg-[#222222]">
-          <div class="flex flex-col md:flex-row gap-5 md:gap-10 md:text-2xl font-black text-white">
-            <div class="flex justify-center">
-              <div class="w-36 md:w-96">
-                <img src="@/assets/Foto_Ivan.jpg" class="rounded-xl" alt="" />
-              </div>
-            </div>
+        <span class="">Hello, I'm </span>
+        <span>Christian Ivan Wibowo</span>
+        <span>.</span> <br />
 
-            <div>
-              <div class="md:text-lg md:w-96 text-justify">
-                As a passionate Computer Science student, I have a strong dedication to becoming a
-                successful web developer. My experience in various projects and organizations
-                focused on website development has enriched my technical skills in the world of web
-                development. I am determined to continue honing these skills and contribute to
-                innovative and impactful web projects. With a strong focus on web development, I am
-                determined to become a dedicated and productive web specialist.
-              </div>
-
-              <div class="flex justify-center md:justify-end">
-                <RouterLink to="/cv">
-                  <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
-                  >
-                    Resume
-                  </button>
-                </RouterLink>
-              </div>
-            </div>
-          </div>
-        </div>
+        <span>I'm a full-stack web developer.</span>
       </div>
+
+      <!-- <div class="text-white text-4xl">heeh</div> -->
     </div>
-  </section>
+  </div>
+
   <RouterView />
 </template>
