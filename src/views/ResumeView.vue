@@ -1,16 +1,7 @@
 <template>
-  <div class="w-fit">
-    <VuePDF :pdf="pdf" :page="1" />
-    <VuePDF :pdf="pdf" :page="2" />
-  </div>
+  <embed style="width: 100vw; height: 100vh" :src="pdf" />
 </template>
 
 <script setup>
-import { VuePDF, usePDF } from '@tato30/vue-pdf'
-import '@tato30/vue-pdf/style.css'
-
-const { pdf } = usePDF({
-  url: 'CV_Ivan.pdf',
-  enableXfa: true
-})
+import pdf from '../assets/CV_Ivan.pdf'
 </script>
